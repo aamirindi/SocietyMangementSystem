@@ -104,5 +104,5 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 **Mohd Aamir Indi**  
 📧 aamirindi@gmail.com  
-🔗 [LinkedIn](https://linkedin.com/in/aamirindi)  
+🔗 [LinkedIn](https://www.linkedin.com/in/mohd-aamir-indi)  
 🐱 [GitHub](https://github.com/aamirindi)
