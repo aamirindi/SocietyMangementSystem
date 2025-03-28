@@ -18,8 +18,8 @@ namespace SocietyMVC.Services
     {
         private readonly ApplicatioDbContext db;
         private readonly IHttpContextAccessor httpContext;
-        private readonly string razorpayKey = "rzp_test_Kl7588Yie2yJTV";
-        private readonly string razorpaySecret = "6dN9Nqs7M6HPFMlL45AhaTgp";
+        private readonly string razorpayKey = "";
+        private readonly string razorpaySecret = "";
 
         public MaintenanceService(ApplicatioDbContext db, IHttpContextAccessor httpContextAccessor)
         {
@@ -295,13 +295,13 @@ namespace SocietyMVC.Services
             var s = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("yadav1052004@gmail.com", "xmzypcywsgdwghjv"),
+                Credentials = new NetworkCredential("", ""),
                 EnableSsl = true
             };
 
             var MailMessage = new MailMessage
             {
-                From = new MailAddress("yadav1052004@gmail.com"),
+                From = new MailAddress(""),
                 IsBodyHtml = true,
                 Subject = subject,
                 Body = body
