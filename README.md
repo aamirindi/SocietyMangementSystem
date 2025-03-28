@@ -92,8 +92,8 @@ dotnet ef database update
 ![User managment](wwwroot/user.png)
 ### Payment Integration
 ![Payment Integration](wwwroot/payment.png)
-### Inovoice Generation
-![Inovoice Generation](wwwroot/invoice.png)
+### Invoice Generation
+![Invoice Generation](wwwroot/invoice.png)
 
 
 ## 📜 License
