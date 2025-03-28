@@ -1,5 +1,4 @@
 
-```markdown
 # 🏘️ Society Management System
 
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-6.0-blue)
@@ -84,9 +83,7 @@ dotnet ef database update
 
 ## 🖼️ Screenshots
 
-| Admin Dashboard | Resident Portal | Staff Interface |
-|-----------------|-----------------|-----------------|
-| ![Admin](https://via.placeholder.com/300x200?text=Admin+Dash) | ![Resident](https://via.placeholder.com/300x200?text=Resident+View) | ![Staff](https://via.placeholder.com/300x200?text=Staff+Panel) |
+
 
 ## 📜 License
 
