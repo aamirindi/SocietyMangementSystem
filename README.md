@@ -106,4 +106,3 @@ MIT License - See [LICENSE](LICENSE) for details.
 📧 aamirindi@gmail.com  
 🔗 [LinkedIn](https://linkedin.com/in/aamirindi)  
 🐱 [GitHub](https://github.com/aamirindi)
-```
