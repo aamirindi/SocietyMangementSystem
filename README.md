@@ -82,14 +82,18 @@ dotnet ef database update
    ```
 
 ## 🖼️ Screenshots
+### Login Page
+![Login Page](wwwroot/login.png)
 ### Admin Panel
 ![Admin Dashboard](wwwroot/dashboard.png)
-
-### Resident Portal  
-![Resident Interface](screenshots/resident-view.png)
-
-### Visitor OTP Flow
-![OTP Verification](screenshots/visitor-otp.jpg)
+### Resident Profile  
+![Resident Interface](wwwroot/profile.png)
+### User Management
+![User managment](wwwroot/user.png)
+### Payment Integration
+![Payment Integration](wwwroot/payment.png)
+### Inovoice Generation
+![Inovoice Generation](wwwroot/invoice.png)
 
 
 ## 📜 License
