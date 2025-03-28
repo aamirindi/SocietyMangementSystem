@@ -1,0 +1,165 @@
+﻿@model List<ComplainModel>
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div>
+        <h3 class="text-center mb-4 fw-bold text-secondary">Admin Complaint List</h3>
+        @* 
+        <div class="d-flex justify-content-end mb-3">
+            <button id="exportExcel" class="btn btn-success shadow-sm me-2 fw-semibold">
+                <i class="fi fi-rr-file-excel me-1"></i> Export to Excel
+            </button>
+            <button id="exportPdf" class="btn btn-danger shadow-sm fw-semibold">
+                <i class="fi fi-rr-file-pdf me-1"></i> Export to PDF
+            </button>
+        </div> *@
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle text-center" id="test">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Complaint ID</th>
+                        <th>UserId</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Admin Response</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr class="bg-white shadow-sm">
+                            <td>@c.ComplaintId</td>
+                            <td>@c.UserId</td>
+                            <td>@c.Category</td>
+                            <td>@c.Description</td>
+                            <td>
+                                <span class="badge bg-primary px-3 py-2">@c.Status</span>
+                            </td>
+                            <td>@c.AdminResponse</td>
+                            <td>
+                               
+                                <a class="btn btn-sm btn-warning shadow-sm" asp-controller="Complain" asp-action="EditComplain"
+                                   asp-route-id="@c.ComplaintId">
+                                    <i class="ti ti-pencil"></i>
+                                </a>
+                                <a class="btn btn-sm btn-danger shadow-sm" asp-controller="Complain" asp-action="DeleteComplain"
+                                   asp-route-id="@c.ComplaintId" onclick="return confirm('Are You Sure?')">
+                                    <i class="ti ti-trash"></i>
+                                </a>
+                                <a class="btn btn-sm btn-success shadow-sm" asp-controller="Complain" asp-action="ResponseComplain"
+                                   asp-route-id="@c.ComplaintId">
+                                    <i class="ti ti-pencil">Response</i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+
+
+    <script>
+                $(document).ready(function () {
+                    var table = $('#test').DataTable()
+                });
+
+                </script>
+    @* <script>
+        $(document).ready(function () {
+            var table = $('#test').DataTable({
+                dom: '<"top d-flex justify-content-between"lf>rtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Export to Excel',
+                        title: 'Users_Report',
+                        className: 'buttons-excel d-none'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'Export to PDF',
+                        title: 'Users_Report',
+                        className: 'buttons-pdf d-none',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
+                ],
+                buttons: true
+            });
+
+            $('#exportExcel').click(function () {
+                table.buttons('.buttons-excel').trigger();
+            });
+
+            $('#exportPdf').click(function () {
+                table.buttons('.buttons-pdf').trigger();
+            });
+        });
+    </script> *@
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <h2>Complaints</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Complaint ID</th>
+            <th>User</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Admin Response</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.ComplaintId</td>
+                <td>@c.UserId</td>
+                <td>@c.Category</td>
+                <td>@c.Description</td>
+                <td>@c.Status</td>
+                <td>@c.AdminResponse</td>
+                <td>
+                    <a asp-action="DeleteComplain" asp-route-id="@c.ComplaintId" onclick="alert('Are you  sure to delete data')" class="btn btn-danger">Delete</a>
+                    <a asp-action="EditComplain" asp-route-id="@c.ComplaintId" class="btn btn-dark">Edit</a>
+                    <a asp-action="ResponseComplain" asp-route-id="@c.ComplaintId" class="btn btn-primary">Response</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> *@

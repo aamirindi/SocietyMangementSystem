@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Add Vehicle";
+}
+@model ParkingModel
+<h2>Add Vehicle & Request Parking</h2>
+<partial name="Notification"></partial>
+
+<form method="post" asp-action="AddVehicle">
+    <div class="form-group">
+        <label>Vehicle Number</label>
+        <input type="text" class="form-control" asp-for="VehicleNo" required>
+    </div>
+
+    <div class="form-group">
+        <label>Vehicle Type</label>
+        <select class="form-control" asp-for="VehicleCategory" required>
+            <option value="">-- Select Vehicle Type --</option>
+            <option value="Car">Car</option>
+            <option value="Bike">Bike</option>
+            <option value="Scooter">Scooter</option>
+        </select>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>

@@ -1,0 +1,60 @@
+﻿@model MaintenanceModel
+
+<form method="post">
+
+    <div class="form-group">
+        <label hidden asp-for="BillId"></label>
+        <input type="hidden" class="form-control" asp-for="BillId" placeholder="Enter Bill Name">
+    </div>
+    <div class="form-group">
+        <label asp-for="BillName"></label>
+        <input type="text" class="form-control" asp-for="BillName" placeholder="Enter Bill Name">
+    </div>
+    <div class="form-group">
+        <label asp-for="Amount"></label>
+        <input type="number" class="form-control" asp-for="Amount" placeholder="Enter Amount">
+    </div>
+
+    <div class="form-group">
+        <label hidden asp-for="Status"></label>
+        <input type="hidden" class="form-control" asp-for="Status" placeholder="Enter Status">
+    </div>
+    <div class="form-group">
+        <label hidden asp-for="IssuedBy"></label>
+        <input type="hidden" class="form-control" asp-for="IssuedBy" >
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DueDate"></label>
+        <input type="date" class="form-control" asp-for="DueDate">
+    </div>
+    <div class="form-group">
+
+        <!-- Flat Number (Read-Only) -->
+        <div class="form-group">
+            <label>Flat Number</label>
+            <input type="text" class="form-control" value="@ViewBag.FlatNumber" readonly>
+        </div>
+
+        <!-- Hidden field for UserId (so it gets submitted) -->
+        <input type="hidden" asp-for="UserId">
+        <input type="hidden" asp-for="IssuedBy">
+        <input type="hidden" asp-for="CreatedDate" />
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

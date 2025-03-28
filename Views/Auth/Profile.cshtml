@@ -1,0 +1,265 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var suser = Context.Session.GetString("MyUser") ?? "";
+    var urole = Context.Session.GetString("MyRole") ?? "";
+    var uemail = Context.Session.GetString("MyId") ?? "";
+    var uid = Context.Session.GetString("UserId") ?? "";
+}
+
+<head>
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .page-wrapper .content {
+            padding: 0 !important;
+            padding-bottom: 0;
+            min-height: calc(100vh - 105px);
+        }
+
+        .modal.modal-top .modal-dialog {
+            transform: translateY(-50px);
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal.show.modal-top .modal-dialog {
+            transform: translateY(0);
+        }
+
+        .user-input {
+            border: 1px solid #d5d5d5;
+            border-radius: 0.5rem;
+            border-left: 3px solid #ff6b00;
+        }
+
+        .user-input:focus {
+            border-color: #ff6b00;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .bg-danger {
+            background-color: red !important;
+        }
+
+        .bg-warning {
+            background-color: orange;
+        }
+
+        .bg-success {
+            background-color: green !important;
+        }
+    </style>
+</head>
+
+<!-- Edit User Modal -->
+<div class="modal modal-top" id="editProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header d-flex justify-content-center border-bottom">
+                <h5 class="modal-title fw-bold text-black text-center mx-auto" id="editUserModalLabel">Edit User</h5>
+                <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-4">
+                <form id="editUserForm" method="post">
+                    <input type="hidden" id="UserId" name="UserId" />
+
+                    <div class="mb-3">
+                        <label for="Name" class="form-label fw-semibold">Full Name</label>
+                        <input type="text" id="Name" name="Name" class="form-control user-input shadow-sm" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Email" class="form-label fw-semibold">Email</label>
+                        <input type="email" id="Email" name="Email" class="form-control user-input shadow-sm"
+                            required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="PhoneNumber" class="form-label fw-semibold">Phone Number</label>
+                        <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control user-input shadow-sm"
+                            required />
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" class="btn w-100 shadow-sm fw-semibold" id="updateProfile"
+                            style="background-color: #ff6b00; color: #fff; border: none; transition: 0.3s;"
+                            onmouseover="this.style.backgroundColor='#e65c00'"
+                            onmouseout="this.style.backgroundColor='#ff6b00'">
+                            <i class="bi bi-save"></i> Save Changes
+                        </button>
+                        <button type="button" class="btn btn-secondary mt-2 w-100 shadow-sm fw-semibold"
+                            id="backToDashboard">
+                            <i class="bi bi-arrow-left"></i> Back
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit User Modal -->
+
+<div class="">
+    <!-- Breadcrumb -->
+    <div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+        <div class="my-auto mb-2">
+            <h2 class="mb-1">Profile</h2>
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+
+                        @if (urole == "Admin")
+                        {
+                            <a asp-controller="Home" asp-action="AdminDashboard"><i class="ti ti-smart-home"></i></a>
+                        }
+                        @if (urole == "Resident")
+                        {
+                            <a asp-controller="Home" asp-action="ResidentDashboard"><i class="ti ti-smart-home"></i></a>
+                        }
+                        @if (urole == "Admin")
+                        {
+                            <a asp-controller="Home" asp-action="StaffDashboard"><i class="ti ti-smart-home"></i></a>
+                        }
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Profile
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- User Profile Card -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">My Profile</h5>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                <i class="fas fa-edit me-2"></i>Edit Profile
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <div class="avatar avatar-xxl bg-primary rounded-circle mb-3">
+                        <i class="fas fa-user fa-2x text-white"></i>
+                    </div>
+                    <h4 id="profileName"></h4>
+                    <span class="badge bg-success" id="profileRole"></span>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Email</label>
+                            <div class="form-control-plaintext" id="profileEmail"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Phone Number</label>
+                            <div class="form-control-plaintext" id="profilePhone"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Flat Number</label>
+                            <div class="form-control-plaintext" id="profileFlat"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Account Status</label>
+                            <div class="form-control-plaintext text-success fw-bold">Active</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /User Profile Card -->
+</div>
+
+
+<script>
+
+    var profileModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+
+    // When closing
+    $('#editProfileModal').on('hidden.bs.modal', function () {
+        profileModal.hide();
+        $('.modal-backdrop').remove();
+        $('body').removeClass('modal-open');
+    });
+
+    $(document).ready(function () {
+        function loadProfileData() {
+            $.ajax({
+                url: "/Auth/GetUserProfile",
+                type: "GET",
+                success: function (response) {
+                    if (response.success) {
+                        $("#UserId").val(response.data.userId);
+                        $("#Name").val(response.data.name);
+                        $("#Email").val(response.data.email);
+                        $("#PhoneNumber").val(response.data.phoneNumber);
+                        $("#FlatNumber").val(response.data.flatNumber);
+                        $("#Role").val(response.data.role);
+                        $("#profileName").text(response.data.name);
+                        $("#profileEmail").text(response.data.email);
+                        $("#profilePhone").text(response.data.phoneNumber || 'Not provided');
+                        $("#profileFlat").text(response.data.flatNumber);
+                        $("#profileRole").text(response.data.role);
+                    } else {
+                        alert("Failed to load profile data.");
+                    }
+                },
+                error: function () {
+                    alert("An error occurred while fetching profile data.");
+                }
+            });
+        }
+
+        loadProfileData();
+
+        $("#updateProfile").click(function () {
+            var updatedUser = {
+                UserId: $("#UserId").val(),
+                Name: $("#Name").val(),
+                Email: $("#Email").val(),
+                PhoneNumber: $("#PhoneNumber").val()
+            };
+
+            $.ajax({
+                url: "/Auth/UpdateUserProfile",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(updatedUser),
+                success: function (response) {
+                    if (response.success) {
+                        alert("Profile updated successfully!");
+                        $('#editProfileModal').modal('hide');
+                        loadProfileData();
+                    } else {
+                        alert("Update failed: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("An error occurred while updating profile.");
+                }
+            });
+        });
+
+        $("#backToDashboard").click(function () {
+            window.location.href = "/Auth/Profile";
+        });
+
+        $('#editProfileModal').on('hidden.bs.modal', function () {
+            $('.modal-backdrop').remove();
+            $('body').removeClass('modal-open');
+        });
+    });
+</script>

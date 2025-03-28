@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model ComplainModel
+
+<form method="post">
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center mb-4">Register a Complaint</h1>
+            <div class="p-4 border rounded bg-light shadow">
+                <div class="mb-3">
+                     <input type="hidden" readonly asp-for="ComplaintId" />
+                     <label class="form-label">Category</label>
+                        <select asp-for="Category" class="form-control" required>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Security">Security</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea asp-for="Description" class="form-control" required></textarea>
+                    </div>
+                    <input type="hidden" asp-for="UserId" />
+                    <button type="submit" class="btn btn-primary">Update Complaint</button>
+                </div>               
+            </div>
+        </div>
+    </div>
+</div>
+  </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <h2>Upgrade Complaint</h2>
+
+<form method="post">
+    <input type="hidden" readonly asp-for="ComplaintId" />
+
+    <div class="form-group">
+        <label>Category</label>
+        <select asp-for="Category" class="form-control" required>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Security">Security</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control" required></textarea>
+    </div>
+
+    <input type="hidden" readonly asp-for="UserId"/>
+  
+
+
+   <button type="submit" class="btn btn-primary">Update Complaint</button>
+
+</form> *@

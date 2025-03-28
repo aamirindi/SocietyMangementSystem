@@ -1,0 +1,54 @@
+﻿@model IEnumerable<StaffScheduleModel>
+@{
+    ViewBag.Title = "Staff Schedules";
+}
+
+<h2>Staff Schedules</h2>
+
+<form method="get" asp-action="Index">
+    <select name="userId" class="form-control">
+        <option value="">-- Select Staff --</option>
+        @foreach (var user in ViewBag.Users as SelectList)
+        {
+            <option value="@user.Value">@user.Text</option>
+        }
+    </select>
+
+    <select name="day" class="form-control">
+        <option value="">-- Select Day --</option>
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <!-- Add other days -->
+    </select>
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Staff Name</th>
+            <th>Day</th>
+            <th>Shift</th>
+            <th>Task</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.User.Name</td>
+                <td>@s.DayOfWeek</td>
+                <td>@s.ShiftStart - @s.ShiftEnd</td>
+                <td>@s.Task</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@s.ScheduleId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@s.ScheduleId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-success">Add New Schedule</a>

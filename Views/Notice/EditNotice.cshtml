@@ -1,0 +1,143 @@
+﻿@model SocietyMVC.Models.NoticeView
+
+@{
+    ViewData["Title"] = "Edit Notice";
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Events & Meeting</h5>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Title</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" asp-for="Title">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Description</label>
+                <div class="col-md-10">
+                    <textarea rows="5" cols="5" class="form-control"
+                              placeholder="Enter text here" asp-for="Description"></textarea>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Date</label>
+                <div class="col-md-10">
+                    <input type="date" class="form-control" asp-for="ExpiryDate">
+                </div>
+            </div>
+
+             <div class="mb-3 row">
+                <label class="form-label col-md-2">Exsiting Attachment</label>
+                   <ul>
+                    @if (!string.IsNullOrEmpty(Model.AttachmentPaths))
+                    {
+                        foreach (var filePath in Model.AttachmentPaths.Split(','))
+                        {
+                                                <li>
+                                                          <a href="@Url.Content("~/Attachments/" + filePath)" target="_blank">@filePath</a>
+                                                           <a href="@Url.Content("~/Attachments/" + filePath)" download>Download</a>
+
+                                                </li>
+                        }
+                    }
+                    else
+                    {
+                                <li>No attachments found.</li>
+                    }
+            </ul>
+                
+            </div>
+
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Attachments</label>
+                <div class="col-md-10">
+                    <input type="file" class="form-control" asp-for="Attachments">
+                </div>
+            </div>
+
+
+            @* <div class="mb-3 row"> *@
+            @* 	<label class="form-label col-md-2">File Input</label> *@
+            @* 	<div class="col-md-10"> *@
+            @* 		<input class="form-control" type="file"> *@
+            @* 	</div> *@
+            @* </div> *@
+
+            <input type="submit" value="Save" class="btn btn-primary"/>
+            <a class="btn btn-danger" asp-controller="Notice" asp-action="NoticeIndex">Back</a>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+@* <div class="container mt-5"> *@
+@*     <h2>Edit Notice</h2> *@
+@*     <form asp-action="EditNotice" method="post" enctype="multipart/form-data"> *@
+@*         <input type="hidden" asp-for="NoticeId" /> *@
+@*         <div class="form-group"> *@
+@*             <label asp-for="Title" class="control-label"></label> *@
+@*             <input asp-for="Title" class="form-control" /> *@
+@*             <span asp-validation-for="Title" class="text-danger"></span> *@
+@*         </div> *@
+@*         <div class="form-group"> *@
+@*             <label asp-for="Description" class="control-label"></label> *@
+@*             <textarea asp-for="Description" class="form-control"></textarea> *@
+@*             <span asp-validation-for="Description" class="text-danger"></span> *@
+@*         </div> *@
+@*         <div class="form-group"> *@
+@*             <label asp-for="ExpiryDate" class="control-label"></label> *@
+@*             <input asp-for="ExpiryDate" type="date" class="form-control" /> *@
+@*             <span asp-validation-for="ExpiryDate" class="text-danger"></span> *@
+@*         </div> *@
+@*         <div class="form-group"> *@
+@*             <label>Existing Attachments</label> *@
+@*             <ul> *@
+@*                 @if (!string.IsNullOrEmpty(Model.AttachmentPaths)) *@
+@*                 { *@
+@*                     foreach (var filePath in Model.AttachmentPaths.Split(',')) *@
+@*                     { *@
+@*                                         <li> *@
+@*                                                   <a href="@Url.Content("~/Attachments/" + filePath)" target="_blank">@filePath</a> *@
+@*                                                    <a href="@Url.Content("~/Attachments/" + filePath)" download>Download</a> *@
+
+@*                                         </li> *@
+@*                     } *@
+@*                 } *@
+@*                 else *@
+@*                 { *@
+@*                             <li>No attachments found.</li> *@
+@*                 } *@
+@*             </ul> *@
+@*         </div> *@
+@*         <div class="form-group"> *@
+@*             <label asp-for="Attachments" class="control-label">Upload New Attachments</label> *@
+@*             <input asp-for="Attachments" type="file" multiple class="form-control" /> *@
+@*             <span asp-validation-for="Attachments" class="text-danger"></span> *@
+@*         </div> *@
+@*         <div class="form-group mt-3"> *@
+@*             <button type="submit" class="btn btn-primary">Save Changes</button> *@
+@*             <a asp-action="NoticeIndex" class="btn btn-secondary">Cancel</a> *@
+@*         </div> *@
+@*     </form> *@
+@* </div> *@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

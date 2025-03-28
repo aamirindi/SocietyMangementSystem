@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model EventMeetingModel
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Events & Meeting</h5>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Title</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" asp-for="Title">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Description</label>
+                <div class="col-md-10">
+                    <textarea rows="5" cols="5" class="form-control"
+                              placeholder="Enter text here" asp-for="Description"></textarea>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Date</label>
+                <div class="col-md-10">
+                    <input type="date" class="form-control" asp-for="Date">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Venue</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" asp-for="Venue">
+                </div>
+            </div>
+
+
+            @* <div class="mb-3 row"> *@
+            @* 	<label class="form-label col-md-2">File Input</label> *@
+            @* 	<div class="col-md-10"> *@
+            @* 		<input class="form-control" type="file"> *@
+            @* 	</div> *@
+            @* </div> *@
+
+            <input type="submit" value="Save" class="btn btn-primary"/>
+            <a class="btn btn-danger" asp-controller="Event" asp-action="Index">Back</a>
+
+        </form>
+    </div>
+</div>

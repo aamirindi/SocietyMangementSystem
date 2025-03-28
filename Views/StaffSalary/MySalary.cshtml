@@ -1,0 +1,47 @@
+﻿@model List<StaffSalaryModel>
+
+@{
+    ViewData["Title"] = "My Salary Details";
+}
+
+<h2 class="text-center">My Salary Details</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Month</th>
+                <th>Total Present</th>
+                <th>Total Absent</th>
+                <th>Calculated Salary (₹)</th>
+                <th>Payment Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var salary in Model)
+            {
+                <tr>
+                    <td>@salary.Month</td>
+                    <td>@salary.TotalPresent</td>
+                    <td>@salary.TotalAbsent</td>
+                    <td>@salary.CalculatedSalary.ToString("N2")</td>
+                    <td>
+                        @if (salary.PaymentStatus == "Paid")
+                        {
+                            <span class="badge bg-success">Paid</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Unpaid</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-center text-warning">No salary records found.</p>
+}

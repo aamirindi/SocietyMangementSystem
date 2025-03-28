@@ -1,0 +1,748 @@
+@model VisitorViewModel
+
+<head>
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/select/1.7.1/css/select.dataTables.min.css" rel="stylesheet">
+
+    <style>
+        .page-wrapper .content {
+            padding: 0 !important;
+            padding-bottom: 0;
+            min-height: calc(100vh - 105px);
+        }
+
+        /* Modal Styles */
+        .modal.modal-top .modal-dialog {
+            transform: translateY(-50px);
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal.show.modal-top .modal-dialog {
+            transform: translateY(0);
+        }
+
+        .visitor-input {
+            border: 1px solid #d5d5d5;
+            border-radius: 0.5rem;
+            border-left: 3px solid #ff6b00;
+        }
+
+        .visitor-input:focus {
+            border-color: #ff6b00;
+            box-shadow: 0 0 0 0.25rem rgba(255, 107, 0, 0.25);
+        }
+
+        /* Status Badges */
+        .exit-time {
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .bg-danger-light {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+
+        .bg-warning-light {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        .bg-success-light {
+            background-color: rgba(25, 135, 84, 0.1);
+            color: #198754;
+        }
+
+        /* DataTable Styles */
+        #visitorTable_wrapper {
+            padding: 20px;
+        }
+
+        #visitorTable thead th {
+            background-color: #4e73df;
+            color: white;
+            font-weight: 600;
+            vertical-align: middle;
+            padding: 12px 15px;
+        }
+
+        #visitorTable tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        #visitorTable tbody tr:hover {
+            background-color: #f8f9fc;
+        }
+
+        #visitorTable tbody td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #e3e6f0;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-exit {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+        }
+
+        .btn-exit:hover {
+            background-color: rgba(13, 110, 253, 0.2);
+        }
+
+        .btn-reject {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+
+        .btn-reject:hover {
+            background-color: rgba(220, 53, 69, 0.2);
+        }
+
+        .btn-delete {
+            background-color: rgba(108, 117, 125, 0.1);
+            color: #6c757d;
+        }
+
+        .btn-delete:hover {
+            background-color: rgba(108, 117, 125, 0.2);
+        }
+
+        /* Card Styles */
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        }
+
+        .card-header {
+            background-color: #f8f9fc;
+            border-bottom: 1px solid #e3e6f0;
+            padding: 1.25rem 1.5rem;
+            border-radius: 10px 10px 0 0 !important;
+        }
+
+        /* Filter Controls */
+        .dataTables_filter input {
+            border: 1px solid #d1d3e2;
+            border-radius: 4px;
+            padding: 0.375rem 0.75rem;
+            height: calc(1.5em + 0.75rem + 2px);
+        }
+
+        .dataTables_length select {
+            border: 1px solid #d1d3e2;
+            border-radius: 4px;
+            padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+        }
+
+        /* Export Buttons */
+        .dt-buttons .btn {
+            border-radius: 4px;
+            padding: 0.375rem 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Responsive Adjustments */
+        @@media (max-width: 768px) {
+            #visitorTable_wrapper .row {
+                flex-direction: column;
+            }
+
+            #visitorTable thead {
+                display: none;
+            }
+
+            #visitorTable tbody td {
+                display: block;
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                border-bottom: 1px solid #e3e6f0;
+            }
+
+            #visitorTable tbody td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                width: 45%;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .action-buttons {
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+
+<!-- Add Visitor Modal (unchanged) -->
+<div class="modal modal-top" id="addVisitorModal" tabindex="-1" aria-labelledby="addVisitorModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header d-flex justify-content-center border-bottom">
+                <h5 class="modal-title fw-bold text-black text-center mx-auto" id="addVisitorModalLabel">Add Visitor
+                </h5>
+                <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body px-4">
+                <form id="addVisitorForm" method="post" asp-action="RequestVisitorOTP">
+                    <div class="mb-3">
+                        <label for="NewVisitor_Name" class="form-label fw-semibold">Name</label>
+                        <input type="text" id="NewVisitor_Name" asp-for="NewVisitor.Name"
+                            class="form-control visitor-input shadow-sm" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="NewVisitor_PhoneNumber" class="form-label fw-semibold">Phone Number</label>
+                        <input type="text" id="NewVisitor_PhoneNumber" asp-for="NewVisitor.PhoneNumber"
+                            class="form-control visitor-input shadow-sm" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="NewVisitor_Email" class="form-label fw-semibold">Email</label>
+                        <input type="email" id="NewVisitor_Email" asp-for="NewVisitor.Email"
+                            class="form-control visitor-input shadow-sm" required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="NewVisitor_FlatNumber" class="form-label fw-semibold">Flat Number</label>
+                        <select id="NewVisitor_FlatNumber" asp-for="NewVisitor.FlatNumber"
+                            class="form-select visitor-input shadow-sm" required>
+                            <option value="">-- Select Flat --</option>
+                            @foreach (var user in ViewBag.Users)
+                            {
+                                <option value="@user.FlatNumber">@user.FlatNumber</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" class="btn w-100 shadow-sm fw-semibold"
+                            style="background-color: #ff6b00; color: #fff; border: none; transition: 0.3s;"
+                            onmouseover="this.style.backgroundColor='#e65c00'"
+                            onmouseout="this.style.backgroundColor='#ff6b00'" onclick="requestOTP(event)">
+                            <i class="bi bi-shield-lock"></i> Request OTP
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Verify OTP Modal (unchanged) -->
+<div class="modal modal-top" id="verifyOtpModal" tabindex="-1" aria-labelledby="verifyOtpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header d-flex justify-content-center border-bottom">
+                <h5 class="modal-title fw-bold text-black text-center mx-auto" id="verifyOtpModalLabel">Verify OTP</h5>
+                <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body px-4">
+                <form id="verifyOtpForm" method="post" asp-action="VerifyOTP">
+                    <input type="hidden" name="visitorEmail" id="visitorEmail" />
+
+                    <div class="mb-3">
+                        <label for="enteredOtp" class="form-label fw-semibold">Enter OTP</label>
+                        <input type="text" name="enteredOtp" id="enteredOtp"
+                            class="form-control visitor-input shadow-sm" required />
+                    </div>
+
+                    <div id="otpTimer" class="mb-3 text-center fw-bold text-danger"></div>
+                    <a href="#" id="resendOtpLink" class="d-none text-decoration-none fw-semibold"
+                        style="color: #ff6b00;" onclick="resendOTP()">🔄 Resend OTP</a>
+
+                    <button type="submit" class="btn w-100 shadow-sm fw-semibold mt-3"
+                        style="background-color: #ff6b00; color: #fff; border: none; transition: 0.3s;"
+                        onmouseover="this.style.backgroundColor='#218838'"
+                        onmouseout="this.style.backgroundColor='#28a745'">
+                        Verify OTP
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="">
+    <div class="">
+        <!-- Breadcrumb -->
+        <div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+            <div class="my-auto mb-2">
+                <h2 class="mb-1">Visitor Management</h2>
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="AdminDashboard"><i class="ti ti-smart-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Visitors
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- /Breadcrumb -->
+
+        <!-- Stats Cards -->
+        <div class="row d-flex align-items-center flex-wrap">
+            <!-- Total Visitors -->
+            <div class="col-lg-3 col-md-6 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center overflow-hidden">
+                            <div>
+                                <span class="avatar avatar-lg bg-dark rounded-circle"><i class="ti ti-users"></i></span>
+                            </div>
+                            <div class="ms-2 overflow-hidden">
+                                <p class="fs-12 fw-medium mb-1 text-truncate">Total Visitors</p>
+                                <h4 id="totalVisitors">@Model.ApprovedVisitors?.Count()</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Total Visitors -->
+
+            <!-- Approved Visitors -->
+            <div class="col-lg-3 col-md-6 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center overflow-hidden">
+                            <div>
+                                <span class="avatar avatar-lg bg-success rounded-circle"><i
+                                        class="ti ti-user-check"></i></span>
+                            </div>
+                            <div class="ms-2 overflow-hidden">
+                                <p class="fs-12 fw-medium mb-1 text-truncate">Approved Visitors</p>
+                                <h4 id="approvedVisitors">@Model.ApprovedVisitors?.Count(v => v.Status ==
+                                                                        VisitorStatus.Approved)</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Approved Visitors -->
+
+            <!-- Pending Visitors -->
+            <div class="col-lg-3 col-md-6 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center overflow-hidden">
+                            <div>
+                                <span class="avatar avatar-lg bg-warning rounded-circle">
+                                    <i class="ti ti-user-question"></i>
+                                </span>
+                            </div>
+                            <div class="ms-2 overflow-hidden">
+                                <p class="fs-12 fw-medium mb-1 text-truncate">Pending Visitors</p>
+                                <h4 id="pendingVisitors">@Model.ApprovedVisitors?.Count(v => v.Status ==
+                                                                        VisitorStatus.Pending)</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pending Visitors -->
+
+            <!-- Action Buttons -->
+            <div class="col-lg-3 col-md-6 d-flex justify-content-end align-items-center">
+                <div class="me-2 mb-2">
+                    <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle d-flex align-items-center" type="button"
+                            id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="ti ti-file-export me-1"></i> Export
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                            <li><a class="dropdown-item export-excel" href="#"><i class="ti ti-file-type-xls me-1"></i>
+                                    Excel</a></li>
+                            <li><a class="dropdown-item export-pdf" href="#"><i class="ti ti-file-type-pdf me-1"></i>
+                                    PDF</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <button type="button" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
+                        data-bs-target="#addVisitorModal">
+                        <i class="ti ti-circle-plus me-2"></i>Add Visitor
+                    </button>
+                </div>
+            </div>
+            <!-- /Action Buttons -->
+        </div>
+
+        <!-- Main DataTable Card -->
+        <div class="card mt-3">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Visitor Records</h5>
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                    </div>
+                    <div>
+                        <select id="statusFilter" class="form-select">
+                            <option value="">All Status</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="visitorTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Phone</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Flat</th>
+                                <th class="text-center">Entry Time</th>
+                                <th class="text-center">Exit Time</th>
+                                <th class="text-center">Vehicle</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.ApprovedVisitors == null || !Model.ApprovedVisitors.Any())
+                            {
+                                <tr>
+                                    <td colspan="9" class="text-center fw-bold text-muted">No visitor records found</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var visitor in Model.ApprovedVisitors)
+                                {
+                                    <tr>
+                                        <td class="text-center">@visitor.Name</td>
+                                        <td class="text-center">@visitor.PhoneNumber</td>
+                                        <td class="text-center">@visitor.Email</td>
+                                        <td class="text-center">@visitor.FlatNumber</td>
+                                        <td class="text-center">@visitor.EntryTime.ToString("g")</td>
+                                        <td class="text-center">
+                                            <span
+                                                class="badge @(visitor.ExitTime == null ? "bg-danger-light" : "bg-success-light")">
+                                                @(visitor.ExitTime?.ToString("g") ?? "Not Exited")
+                                            </span>
+                                        </td>
+                                        <td class="text-center">@(visitor.HasVehicle ? "Yes" : "No")</td>
+                                        <td class="text-center">
+                                            <span
+                                                class="badge 
+                                                                                                                                                                @(visitor.Status == VisitorStatus.Approved ? "bg-success-light" :
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  visitor.Status == VisitorStatus.Rejected ? "bg-danger-light" : "bg-warning-light")">
+                                        @visitor.Status
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <div class="action-buttons">
+                                        @if (visitor.ExitTime == null && visitor.Status.ToString() == "Approved")
+                                                {
+                                                    <a class="action-btn btn-exit" data-toggle="tooltip" title="Exit"
+                                                        asp-controller="Visitor" asp-action="UpdateExitTime"
+                                                        asp-route-id="@visitor.VisitorId" onclick="return confirm('Are you sure?')">
+                                                        <i class="ti ti-logout"></i>
+                                                    </a>
+                                                }
+                                                @if (visitor.Status == VisitorStatus.Pending)
+                                                {
+                                                    <a class="action-btn btn-reject" data-toggle="tooltip" title="Reject"
+                                                        asp-controller="Visitor" asp-action="RejectedVisitor"
+                                                        asp-route-id="@visitor.VisitorId">
+                                                        <i class="ti ti-x"></i>
+                                                    </a>
+                                                }
+                                                <a class="action-btn btn-delete" data-toggle="tooltip" title="Delete"
+                                                    asp-action="DeleteVisitorBtn" asp-controller="Visitor"
+                                                    asp-route-id="@visitor.VisitorId" onclick="return confirm('Are you sure?')">
+                                                    <i class="ti ti-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.7.1/js/dataTables.select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize DataTable with custom controls
+            var table = $('#visitorTable').DataTable({
+                dom: '<"top"<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>>rt<"bottom"<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>><"clear">',
+                responsive: true,
+                language: {
+                    lengthMenu: "Show _MENU_ entries",
+                    info: "Showing _START_ to _END_ of _TOTAL_ entries",
+                    infoEmpty: "No entries found",
+                    infoFiltered: "(filtered from _MAX_ total entries)",
+                    search: "", // Remove the default search label
+                    searchPlaceholder: "Search...",
+                    paginate: {
+                        first: "First",
+                        last: "Last",
+                        next: "Next",
+                        previous: "Previous"
+                    }
+                },
+                initComplete: function () {
+                    // Hide the default search box
+                    $('.dataTables_filter').hide();
+
+                    // Connect your existing search input
+                    $('#searchInput').on('keyup', function () {
+                        table.search(this.value).draw();
+                    });
+
+                    // Connect your existing status filter
+                    $('#statusFilter').on('change', function () {
+                        var status = $(this).val();
+                        if (status === "") {
+                            table.columns(7).search("").draw();
+                        } else {
+                            table.columns(7).search("^" + status + "$", true, false).draw();
+                        }
+                    });
+
+                    // Connect your existing export buttons
+                    $('.export-excel').on('click', function () {
+                        table.button(0).trigger();
+                    });
+
+                    $('.export-pdf').on('click', function () {
+                        table.button(1).trigger();
+                    });
+                },
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="ti ti-file-type-xls me-1"></i> Excel',
+                        className: 'btn btn-success',
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        title: 'Visitors_Export_' + new Date().toLocaleDateString()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="ti ti-file-type-pdf me-1"></i> PDF',
+                        className: 'btn btn-danger',
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        title: 'Visitors_Export_' + new Date().toLocaleDateString(),
+                        customize: function (doc) {
+                            doc.content[1].table.widths =
+                                Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        }
+                    }
+                ],
+                drawCallback: function () {
+                    // Update stats counters when table is redrawn
+                    var total = table.rows().count();
+                    var approved = table.rows().nodes().filter(function () {
+                        return $(this).find('td:eq(7)').text().trim() === 'Approved';
+                    }).length;
+                    var pending = table.rows().nodes().filter(function () {
+                        return $(this).find('td:eq(7)').text().trim() === 'Pending';
+                    }).length;
+                    var rejected = table.rows().nodes().filter(function () {
+                        return $(this).find('td:eq(7)').text().trim() === 'Rejected';
+                    }).length;
+
+                    $('#totalVisitors').text(total);
+                    $('#approvedVisitors').text(approved);
+                    $('#pendingVisitors').text(pending);
+                }
+            });
+
+            // Initialize tooltips
+            $('[data-toggle="tooltip"]').tooltip({
+                trigger: 'hover',
+                placement: 'top'
+            });
+
+            // Your existing OTP functions (unchanged)
+            let otpRequested = false; // Prevent multiple clicks
+
+            function requestOTP(event) {
+                event.preventDefault(); // Prevent form submission
+
+                if (otpRequested) {
+                    console.log("OTP request already in progress.");
+                    return;
+                }
+
+                otpRequested = true; // Disable further clicks
+                console.log("Request OTP function called");
+
+                const form = document.getElementById('addVisitorForm');
+                const formData = new FormData(form);
+
+                // Log form data for debugging
+                console.log("Form action:", form.action);
+                for (let pair of formData.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
+                }
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        console.log("Response status:", response.status);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Response data:", data);
+                        if (data.success) {
+                            console.log("OTP requested successfully");
+
+                            // Store visitor email for verification
+                            document.getElementById('visitorEmail').value = formData.get('NewVisitor.Email');
+
+                            // Close Add Visitor Modal
+                            var addVisitorModal = bootstrap.Modal.getInstance(document.getElementById('addVisitorModal'));
+                            if (addVisitorModal) addVisitorModal.hide();
+
+                            // Show OTP Modal
+                            setTimeout(() => {
+                                var otpModal = new bootstrap.Modal(document.getElementById('verifyOtpModal'));
+                                otpModal.show();
+                                startOTPTimer();
+                            }, 500);
+                        } else {
+                            alert('Failed to request OTP: ' + (data.message || 'Unknown error'));
+                            otpRequested = false; // Re-enable button on failure
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error details:', error);
+                        alert('An error occurred: ' + error.message);
+                        otpRequested = false; // Re-enable button on error
+                    });
+            }
+
+            function startOTPTimer() {
+                let timeLeft = 120; // 2 minutes
+                const otpTimerElement = document.getElementById('otpTimer');
+                const resendLink = document.getElementById('resendOtpLink');
+
+                resendLink.classList.add('d-none'); // Hide Resend OTP
+
+                otpTimerElement.innerText = `OTP expires in ${timeLeft} seconds.`;
+
+                const otpInterval = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft <= 0) {
+                        clearInterval(otpInterval);
+                        otpTimerElement.innerText = 'OTP expired.';
+                        resendLink.classList.remove('d-none');
+                        otpRequested = false; // Allow requesting OTP again after expiry
+                    } else {
+                        otpTimerElement.innerText = `OTP expires in ${timeLeft} seconds.`;
+                    }
+                }, 1000);
+            }
+
+            function resendOTP() {
+                const email = document.getElementById('visitorEmail').value;
+
+                if (!email) {
+                    alert('Email information is missing. Please try again.');
+                    return;
+                }
+
+                fetch('/Visitor/ResendOTP', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(email)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('OTP has been resent successfully.');
+                            document.getElementById('resendOtpLink').classList.add('d-none');
+                            startOTPTimer();
+                        } else {
+                            alert('Failed to resend OTP. Please try again.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while resending OTP.');
+                    });
+            }
+    </script>
+}

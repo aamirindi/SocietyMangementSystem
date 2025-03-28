@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Pay Bill";
+}
+
+<h2>Pay Bill - @ViewBag.BillName</h2>
+<p>Amount: ₹@((decimal)ViewBag.Amount / 100)</p>
+
+<form id="razorpay-form">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"
+            data-key="@ViewBag.RazorpayKey"
+            data-amount="@ViewBag.Amount"
+            data-currency="INR"
+            data-order_id="@ViewBag.OrderId"
+            data-buttontext="Pay Now"
+            data-name="Society Management"
+            data-description="Bill Payment"
+            data-prefill.email="@ViewBag.UserEmail"
+            data-theme.color="#F37254">
+    </script>
+</form>
+
+<script>
+    var options = {
+        key: "@ViewBag.RazorpayKey",
+        amount: "@ViewBag.Amount",
+        currency: "INR",
+        order_id: "@ViewBag.OrderId",
+        name: "Society Management",
+        description: "Bill Payment",
+        prefill: {
+            email: "@ViewBag.UserEmail"
+        },
+        theme: {
+            color: "#F37254"
+        },
+        handler: function (response) {
+            console.log("✅ Payment Successful:", response); // Debugging ke liye
+            console.log("🔗 Redirecting to PaymentSuccess...");
+
+            // ✅ Backend pe redirect karo
+            window.location.href = "/Maintenance/PaymentSuccess?razorpay_payment_id=" + response.razorpay_payment_id +
+                "&razorpay_order_id=" + response.razorpay_order_id +
+                "&razorpay_signature=" + response.razorpay_signature +
+                "&billId=@ViewBag.BillId";
+        },
+        modal: {
+            ondismiss: function () {
+                console.log("❌ User closed the payment window.");
+            }
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    document.getElementById("razorpay-form").addEventListener("click", function (e) {
+        rzp1.open();
+        e.preventDefault();
+    });
+</script>
+

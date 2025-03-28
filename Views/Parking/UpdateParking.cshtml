@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Assign Parking";
+}
+
+<h2>Assign Parking Slot</h2>
+@model ParkingModel
+<partial name="Notification"></partial>
+
+<form method="post">
+    <div class="form-group">
+        <label>Parking Slot</label>
+        <input type="hidden" asp-for="SlotId" />
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="Status" />
+        <input type="hidden" asp-for="VehicleCategory" />
+        <input type="hidden" asp-for="VehicleNo" />
+
+
+
+
+
+        <select class="form-control" asp-for="SlotNumber" required>
+            <option value="">Select Parking Slot</option>
+            @foreach (var slot in ViewBag.ParkingSlots)
+            {
+                <option value="@slot.Value">@slot.Text</option>
+            }
+        </select>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Assign Slot</button>
+    </div>
+</form>

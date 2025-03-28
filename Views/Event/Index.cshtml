@@ -1,0 +1,118 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@if (TempData["delmsg"]!=null)
+{
+    <span class="alert alert-success">@TempData["delmsg"]</span>
+}
+
+@if (TempData["Updmsg"] != null)
+{
+    <span class="alert alert-success">@TempData["Updmsg"]]</span>
+}
+@model List<EventMeetingModel>
+<a asp-controller="Event" asp-action="CreateEvent" class="btn btn-info">Add Event</a>
+<br />
+<br>
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header justify-content-between">
+            <div class="card-title">
+                Striped columns
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table text-nowrap table-striped-columns">
+                    <thead>
+                        <tr>
+                            <th>EventId</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Event Date</th>
+                            <th>Venue</th>
+                            <th>Created by</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in Model)
+                        {
+                            <tr>
+                                <td>@d.EventId</td>
+                                <td>@d.Title</td>
+                                <td>@d.Description</td>
+                                <td>@d.Date</td>
+                                <td>@d.Venue</td>
+                                <td>@d.CreatedUser?.Name</td>  <!-- This will show the CreatedBy name -->
+                                <td>
+                                    <a class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this record?')" asp-controller="Event" asp-action="DeleteEvent" asp-route-id="@d.EventId">Delete</a>
+                                    <a class="btn btn-sm btn-success" asp-controller="Event" asp-action="EditEvent" asp-route-id="@d.EventId">Edit</a>
+                                </td>
+
+                            </tr>
+                        }
+
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@* <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Event and Meetings</h4>
+                
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>EventId</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Event Date</th>
+                                <th>Venue</th>
+                                <th>Created by</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var d in Model)
+                            {
+                                <tr>
+                                    <td>@d.EventId</td>
+                                    <td>@d.Title</td>
+                                    <td>@d.Description</td>
+                                    <td>@d.Date</td>
+                                    <td>@d.Venue</td>
+                                    <td>@d.CreatedBy</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this record?')" asp-controller="Event" asp-action="DeleteEmp" asp-route-id="@d.EventId">Delete</a>
+                                        <a class="btn btn-sm btn-success" asp-controller="Event" asp-action="EditEmp" asp-route-id="@d.EventId">Edit</a>
+                                    </td>
+
+                                </tr>
+                            }
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@
+

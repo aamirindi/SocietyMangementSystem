@@ -1,0 +1,37 @@
+﻿@model SocietyMVC.Models.NoticeModel
+
+@{
+    ViewData["Title"] = "View Notice";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header text-white" style="background-color: #F37438;">
+            <h2 class="mb-0">@Model.Title</h2>
+        </div>
+        <div class="card-body bg-light">
+            <p class="card-text fs-5">@Model.Description</p>
+            <p class="card-text fw-bold" style="color: #F37438;">Expiry Date: @Model.ExpiryDate.ToShortDateString()</p>
+
+            <h4 class="mt-4" style="color: #F37438;">Attachments</h4>
+            <ul class="list-group">
+                @if (!string.IsNullOrEmpty(Model.AttachmentPaths))
+                {
+                    foreach (var filePath in Model.AttachmentPaths.Split(','))
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
+                            <a href="@Url.Content("~/Attachments/" + filePath)" target="_blank" class="text-decoration-none" style="color: #F37438;">View</a>
+                            <a href="@Url.Content("~/Attachments/" + filePath)" download class="btn btn-outline" style="border-color: #F37438; color: #F37438;">Download</a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="list-group-item bg-white text-muted">No attachments found.</li>
+                }
+            </ul>
+
+            <a asp-action="NoticeIndex" class="btn mt-4 text-white" style="background-color: #F37438;">Back to List</a>
+        </div>
+    </div>
+</div>

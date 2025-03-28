@@ -1,0 +1,36 @@
+﻿@model IEnumerable<StaffScheduleModel>
+
+@{
+    ViewBag.Title = "My Assigned Tasks";
+}
+
+<h2 class="mb-3">My Assigned Tasks</h2>
+
+@if (!Model.Any())
+{
+    <p>No tasks assigned.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Day</th>
+                <th>Shift Start</th>
+                <th>Shift End</th>
+                <th>Task</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@task.DayOfWeek</td>
+                    <td>@task.ShiftStart</td>
+                    <td>@task.ShiftEnd</td>
+                    <td>@task.Task</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,140 @@
+﻿@if (TempData["InvoiceId"] != null)
+{
+    <script>
+        window.onload = function () {
+            var invoiceId = '@TempData["InvoiceId"]';
+            if (invoiceId) {
+                window.location.href = '/Maintenance/GenerateInvoice?id=' + invoiceId;
+            }
+        };
+    </script>
+}
+
+@model List<MaintenanceModel>
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4 rounded border-0" style="background-color: #fff7eb;">
+        <h3 class="text-center mb-4 text-primary">Maintenance Bills</h3>
+
+        <div class="d-flex justify-content-end mb-3">
+            <button id="exportExcel" class="btn btn-outline-primary me-2 fw-bold">
+                <i class="ti ti-file-excel"></i> Export to Excel
+            </button>
+            <button id="exportPdf" class="btn btn-primary fw-bold text-white">
+                <i class="ti ti-file-pdf"></i> Export to PDF
+            </button>
+        </div>
+
+        <table class="table table-hover table-bordered align-middle text-center" id="test">
+            <thead class="table-dark">
+                <tr>
+                    <th>User ID</th>
+                    <th>Bill Name</th>
+                    <th>Flat Number</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Issued Date</th>
+                    <th>Issued By</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>@i.UserId</td>
+                        <td>@i.BillName</td>
+                        <td>@i.User.FlatNumber</td>
+                        <td>@i.Amount</td>
+                        <td>@i.DueDate.ToString("dd-MM-yyyy")</td>
+                        <td>
+                            <span
+                                class="badge @(i.Status == "Pending" ? "bg-danger" : (i.Status == "Paid" ? "bg-success" : "bg-secondary"))">
+                                @i.Status
+                            </span>
+                        </td>
+                        <td>@i.CreatedDate.ToString("dd-MM-yyyy")</td>
+                        <td>@i.IssuedBy</td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" asp-action="ViewBill" asp-route-id="@i.BillId">
+                                <i class="ti ti-eye"></i> View
+                            </a>
+
+                            @if (i.Status != "Paid" && i.Status != "Overdue")
+                            {
+                                <a class="btn btn-sm btn-success" asp-action="PayBill" asp-route-id="@i.BillId">
+                                    <i class="ti ti-credit-card"></i> Pay
+                                </a>
+                            }
+
+                            @if (i.Status == "Paid" || i.Status == "Overdue")
+                            {
+                                <a class="btn btn-sm btn-info download-invoice" data-id="@i.BillId">
+                                    <i class="ti ti-download"></i> Download
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#test').DataTable({
+                dom: '<"top d-flex justify-content-between"lf>rtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Export to Excel',
+                        title: 'Maintenance_Bills_Report',
+                        className: 'buttons-excel d-none'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'Export to PDF',
+                        title: 'Maintenance_Bills_Report',
+                        className: 'buttons-pdf d-none',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
+                ]
+            });
+
+            $('#exportExcel').click(function () {
+                table.buttons('.buttons-excel').trigger();
+            });
+
+            $('#exportPdf').click(function () {
+                table.buttons('.buttons-pdf').trigger();
+            });
+
+            $(".download-invoice").click(function () {
+                var billId = $(this).data("id");
+                window.location.href = '/Maintenance/DownloadInvoice?id=' + billId;
+            });
+        });
+    </script>
+}

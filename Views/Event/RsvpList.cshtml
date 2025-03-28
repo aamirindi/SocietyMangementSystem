@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<EventRSVPModel>
+<br />
+<br>
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header justify-content-between">
+            <div class="card-title">
+                Striped columns
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table text-nowrap table-striped-columns">
+                    <thead>
+                        <tr>
+                            <th>RSVPId</th>
+                            <th>Resident</th>
+                            <th>Event</th>
+                            <th>Response </th>
+                            <th>Responded Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in Model)
+                        {
+                            <tr>
+                                <td>@d.RSVPId</td>
+                                <td>@d.User?.Name</td>
+                                <td>@d.Event?.Title</td>
+                                <td>@d.Response</td>
+                                <td>@d.RespondedOn</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

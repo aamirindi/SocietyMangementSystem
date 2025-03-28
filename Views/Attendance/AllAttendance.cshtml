@@ -1,0 +1,27 @@
+﻿@model List<StaffAttendanceModel>
+
+<h2>All Staff Attendance Records</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Date</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>@record.User.Name</td>
+                <td>@record.Date.ToShortDateString()</td>
+                <td>@(record.CheckInTime?.ToString(@"hh\:mm") ?? "Not Marked")</td>
+                <td>@(record.CheckOutTime?.ToString(@"hh\:mm") ?? "Not Marked")</td>
+                <td>@record.AttendanceStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>

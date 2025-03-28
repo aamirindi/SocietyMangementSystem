@@ -1,0 +1,44 @@
+﻿<partial name="Notification"></partial>
+@model MaintenanceModel
+
+<form method="post">
+
+
+    <div class="form-group">
+        <label asp-for="BillName"></label>
+        <input type="text" class="form-control" asp-for="BillName" placeholder="Enter Bill Name" required > 
+    </div>
+    <div class="form-group">
+        <label asp-for="Amount"></label>
+        <input type="number" class="form-control" asp-for="Amount" placeholder="Enter Amount" required>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DueDate"></label>
+        <input type="date" class="form-control" asp-for="DueDate" required>
+    </div>
+    <div class="form-group">
+        <label>FlatNumber</label>
+
+
+        <select class="form-control" asp-for="UserId" required>
+            <option value="">--Select FlatNo--</option>
+            @foreach (var flat in (List<SelectListItem>)ViewBag.Flatnumber ?? new List<SelectListItem>())
+            {
+                <option value="@flat.Value">@flat.Text</option> <!-- UserId as Value, FlatNumber as Display -->
+            }
+        </select>
+
+
+
+
+
+
+    </div>
+
+
+    <br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

@@ -1,0 +1,40 @@
+﻿@model List<StaffSalaryModel>
+
+<h2>Salary & Payments</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Staff Name</th>
+            <th>Month</th>
+            <th>Total Present</th>
+            <th>Total Absent</th>
+            <th>Calculated Salary</th>
+            <th>Payment Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var salary in Model)
+        {
+            <tr>
+                <td>@salary.User.Name</td>
+                <td>@salary.Month</td>
+                <td>@salary.TotalPresent</td>
+                <td>@salary.TotalAbsent</td>
+                <td>@salary.CalculatedSalary</td>
+                <td>@salary.PaymentStatus</td>
+                <td>
+                    @if (salary.PaymentStatus == "Unpaid")
+                    {
+                        <a href="@Url.Action("MarkAsPaid", "StaffSalary", new { salaryId = salary.SalaryId })" class="btn btn-success">Mark as Paid</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("ProcessSalary", "StaffSalary", new { month = "March-2025" })" class="btn btn-primary">
+    Process Salary
+</a>

@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ComplainModel
+
+<form method="post">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center mb-4">Response Complaint</h1>
+                <div class="p-4 border rounded bg-light shadow">
+                    <div class="mb-3">
+                         <label class="form-label">Complain Id</label><input type="text" readonly asp-for="ComplaintId" class="form-control" />
+                        <label class="form-label">UserId</label><input type="text" readonly asp-for="UserId" class="form-control" />
+                        <label class="form-label">Category</label><input type="text" readonly asp-for="Category" class="form-control" />
+                        <label class="form-label">Description</label><input type="text" readonly asp-for="Description" class="form-control" />
+                        <label class="form-label">Created Date</label><input type="text" readonly asp-for="CreatedDate" class="form-control" />
+
+                        <label class="form-label">Status</label>
+                        <select asp-for="Status" class="form-control" required>
+                            <option value="Open">Open</option>
+                            <option value="In-Progress">In-Progress</option>
+                            <option value="Closed">Closed</option>
+                        </select>
+                        <div class="form-group">
+                            <label>Admin Response Description</label>
+                            <textarea asp-for="AdminResponse" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Response Complaint</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Response Complaint</h2>
+
+ <form method="post">
+    ComplainId : <input type="text" readonly asp-for="ComplaintId" />
+    UserId: <input type="text" readonly asp-for="UserId" />
+    Category : <input type="text" readonly asp-for="Category" />
+    User Description : <input type="text" readonly asp-for="Description" />
+   <input type="text" readonly asp-for="Status" /> *@
+@*   Created Date: <input type="text" readonly asp-for="CreatedDate" />
+
+
+
+
+    <div class="form-group">
+        <label>Status</label>
+        <select asp-for="Status" class="form-control" required>
+            <option value="Open">Open</option>
+            <option value="In-Progress">In-Progress</option>
+            <option value="Closed">Closed</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Admin Response Description</label>
+        <textarea asp-for="AdminResponse" class="form-control" required></textarea>
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary">Response Complaint</button>
+
+</form> *@

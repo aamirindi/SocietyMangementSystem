@@ -1,0 +1,54 @@
+﻿@model MaintenanceModel
+
+<div class="card shadow-lg p-4 rounded">
+    <h3 class="text-center mb-3">Bill Details</h3>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Bill ID</th>
+                <td>@Model.BillId</td>
+            </tr>
+            <tr>
+                <th>Bill Name</th>
+                <td>@Model.BillName</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td class="fw-bold" style="color: @(Model.Status == "Pending" ? "red" : (Model.Status == "Paid" ? "green" : "black"))">
+                    @Model.Status
+                </td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>@Model.UserId</td>
+            </tr>
+            <tr>
+                <th>Due Date</th>
+                <td>@Model.DueDate.ToString("dd-MM-yyyy")</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .card {
+        max-width: 500px;
+        margin: auto;
+        background-color: #f8f9fa;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+    }
+</style>

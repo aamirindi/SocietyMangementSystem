@@ -1,0 +1,119 @@
+﻿@model List<ParkingModel>
+
+<a asp-action="AddVehicle" class="btn btn-primary mb-3 text-white fw-bold">
+    <i class="ti ti-plus"></i> Add Vehicle
+</a>
+
+<div class="d-flex justify-content-end mb-3">
+    <button id="exportExcel" class="btn btn-outline-primary me-2 fw-bold">
+        <i class="ti ti-file-excel"></i> Export to Excel
+    </button>
+    <button id="exportPdf" class="btn btn-primary fw-bold text-white">
+        <i class="ti ti-file-pdf"></i> Export to PDF
+    </button>
+</div>
+
+<table class="table table-hover table-bordered align-middle text-center" id="test">
+    <thead class="table-dark">
+        <tr>
+            <th>SlotId</th>
+            <th>UserId</th>
+            <th>Vehicle No</th>
+            <th>Status</th>
+            <th>OccupiedBy</th>
+            <th>Slot Number</th>
+            <th>VehicleType</th>
+            <th>AssignedTime</th>
+            <th>ExitTime</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.SlotId</td>
+                <td>@i.UserId</td>
+                <td>@i.VehicleNo</td>
+                <td>
+                    <span class="badge @(i.Status == "Occupied" ? "bg-danger" : "bg-success")">@i.Status</span>
+                </td>
+                <td>@i.OccupiedBy</td>
+                <td>@i.SlotNumber</td>
+                <td>@i.VehicleCategory</td>
+                <td>@i.AssignedTime.ToString()</td>
+                <td>@i.ExitTime?.ToString()</td>
+                <td>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@i.SlotId"
+                        onclick="return confirm('Are you sure?')">
+                        <i class="ti ti-trash"></i>
+                    </a>
+                    @if (i.Status == "Occupied")
+                    {
+                        @if (i.ExitTime == null)
+                        {
+                            <a class="btn btn-sm btn-success" asp-action="Exit" asp-route-id="@i.SlotId">Exit</a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-sm btn-secondary" disabled>Exited</button>
+                        }
+                    }
+                    else
+                    {
+                        <button class="btn btn-sm btn-secondary" disabled>Exit</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#test').DataTable({
+                dom: '<"top d-flex justify-content-between"lf>rtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Export to Excel',
+                        title: 'Parking_Report',
+                        className: 'buttons-excel d-none'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'Export to PDF',
+                        title: 'Parking_Report',
+                        className: 'buttons-pdf d-none',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
+                ],
+                buttons: true
+            });
+
+            $('#exportExcel').click(function () {
+                table.buttons('.buttons-excel').trigger();
+            });
+
+            $('#exportPdf').click(function () {
+                table.buttons('.buttons-pdf').trigger();
+            });
+        });
+    </script>
+}

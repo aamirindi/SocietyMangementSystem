@@ -1,0 +1,50 @@
+﻿@model List<EventRSVPModel>
+
+@if (TempData["delmsg"] != null)
+{
+    <span class="alert alert-success">@TempData["delmsg"]</span>
+}
+
+@if (TempData["Updmsg"] != null)
+{
+    <span class="alert alert-success">@TempData["Updmsg"]</span>
+}
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header justify-content-between">
+            <div class="card-title">
+                My RSVP Responses
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table text-nowrap table-striped-columns">
+                    <thead>
+                        <tr>
+  
+                            <th>Event Title</th>
+                            <th>Response</th>
+                            <th>Responded Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in Model)
+                        {
+                            <tr>
+                               
+                                <td>@d.Event?.Title</td>
+                                <td>@d.Response</td>
+                                <td>@d.RespondedOn.ToString("dd-MM-yyyy hh:mm tt")</td>
+                                <td>
+                                    <a class="btn btn-sm btn-success" asp-controller="Event" asp-action="EditUserRSVP" asp-route-id="@d.EventId">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SocietyMVC
+build_property.RootNamespace = SocietyMVC
+build_property.ProjectDir = D:\Whatsapp\SocietyMVC\SocietyMVC\SocietyMVC\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Whatsapp\SocietyMVC\SocietyMVC\SocietyMVC
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Auth/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Auth/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Auth/ViewUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxWaWV3VXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Complain/AddComplaint.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW5cQWRkQ29tcGxhaW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Complain/AdminComplainList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW5cQWRtaW5Db21wbGFpbkxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Complain/EditComplain.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW5cRWRpdENvbXBsYWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Complain/ResponseComplain.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW5cUmVzcG9uc2VDb21wbGFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Complain/ViewComplaint.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW5cVmlld0NvbXBsYWludC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Event/CreateEvent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcQ3JlYXRlRXZlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Event/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Event/Rsvp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcUnN2cC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Home/AdminDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pbkRhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Home/ResidentDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXNpZGVudERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Home/StaffDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdGFmZkRhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Home/ViewUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3VXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Maintenance/GenerateBill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcR2VuZXJhdGVCaWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Maintenance/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Maintenance/PayBIll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcUGF5QklsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Maintenance/UpdateBill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcVXBkYXRlQmlsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Maintenance/UserIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcVXNlckluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Maintenance/ViewBill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcVmlld0JpbGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Notice/PostNotice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWNlXFBvc3ROb3RpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Notice/ViewNotice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWNlXFZpZXdOb3RpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Parking/AddVehicle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFya2luZ1xBZGRWZWhpY2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Parking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFya2luZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Parking/UpdateParking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFya2luZ1xVcGRhdGVQYXJraW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Parking/UserIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFya2luZ1xVc2VySW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Parking/ViewSlots.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFya2luZ1xWaWV3U2xvdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Shared/Notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5vdGlmaWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Staff/AddStaff.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhZmZcQWRkU3RhZmYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Staff/StaffAttendence.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhZmZcU3RhZmZBdHRlbmRlbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Visitor/AddVisitor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRvclxBZGRWaXNpdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Whatsapp/SocietyMVC/SocietyMVC/SocietyMVC/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-yoo5zzitw3

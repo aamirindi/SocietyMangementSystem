@@ -1,0 +1,236 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\views\\attendance\\markattendance.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:views\\attendance\\markattendance.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\models\\staffmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:models\\staffmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\views\\auth\\viewuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:views\\auth\\viewuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\services\\maintenanceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:services\\maintenanceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\views\\staffsalary\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:views\\staffsalary\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\views\\home\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:views\\home\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\views\\maintenance\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:views\\maintenance\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\views\\maintenance\\generatebill.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:views\\maintenance\\generatebill.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|d:\\whatsapp\\societymvc\\societymvc\\societymvc\\models\\maintenancemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C494E54-DB9D-4AFB-90CF-9FD6F375EE1D}|SocietyMVC.csproj|solutionrelative:models\\maintenancemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 182,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Auth\\Register.cshtml",
+              "RelativeDocumentMoniker": "Views\\Auth\\Register.cshtml",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Auth\\Register.cshtml",
+              "RelativeToolTip": "Views\\Auth\\Register.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAADwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-27T06:27:10.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ViewUser.cshtml",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Auth\\ViewUser.cshtml",
+              "RelativeDocumentMoniker": "Views\\Auth\\ViewUser.cshtml",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Auth\\ViewUser.cshtml",
+              "RelativeToolTip": "Views\\Auth\\ViewUser.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-27T06:27:10.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MaintenanceService.cs",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Services\\MaintenanceService.cs",
+              "RelativeDocumentMoniker": "Services\\MaintenanceService.cs",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Services\\MaintenanceService.cs",
+              "RelativeToolTip": "Services\\MaintenanceService.cs",
+              "ViewState": "AgIAABoBAAAAAAAAAAAwwC8BAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T06:00:18.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MarkAttendance.cshtml",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Attendance\\MarkAttendance.cshtml",
+              "RelativeDocumentMoniker": "Views\\Attendance\\MarkAttendance.cshtml",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Attendance\\MarkAttendance.cshtml",
+              "RelativeToolTip": "Views\\Attendance\\MarkAttendance.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-27T05:03:30.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\StaffSalary\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\StaffSalary\\Index.cshtml",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\StaffSalary\\Index.cshtml",
+              "RelativeToolTip": "Views\\StaffSalary\\Index.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-27T05:03:16.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminDashboard.cshtml",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Home\\AdminDashboard.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\AdminDashboard.cshtml",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Home\\AdminDashboard.cshtml",
+              "RelativeToolTip": "Views\\Home\\AdminDashboard.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFMAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-27T04:26:51.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Maintenance\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Maintenance\\Index.cshtml",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Maintenance\\Index.cshtml",
+              "RelativeToolTip": "Views\\Maintenance\\Index.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-27T04:22:22.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StaffModel.cs",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Models\\StaffModel.cs",
+              "RelativeDocumentMoniker": "Models\\StaffModel.cs",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Models\\StaffModel.cs",
+              "RelativeToolTip": "Models\\StaffModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T04:21:24.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GenerateBill.cshtml",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Maintenance\\GenerateBill.cshtml",
+              "RelativeDocumentMoniker": "Views\\Maintenance\\GenerateBill.cshtml",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Views\\Maintenance\\GenerateBill.cshtml",
+              "RelativeToolTip": "Views\\Maintenance\\GenerateBill.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABcAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-27T04:15:08.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MaintenanceModel.cs",
+              "DocumentMoniker": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Models\\MaintenanceModel.cs",
+              "RelativeDocumentMoniker": "Models\\MaintenanceModel.cs",
+              "ToolTip": "D:\\Whatsapp\\SocietyMVC\\SocietyMVC\\SocietyMVC\\Models\\MaintenanceModel.cs",
+              "RelativeToolTip": "Models\\MaintenanceModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T04:14:28.869Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 89,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

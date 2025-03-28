@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model EventRSVPModel
+
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Events & Meeting</h5>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Id</label>
+                <div class="col-md-10">
+                    <input type="text" readonly class="form-control" asp-for="RSVPId">
+                </div>
+            </div>
+
+            @* <div class="mb-3 row"> *@
+            @*     <label class="form-label col-md-2">Description</label> *@
+            @*     <div class="col-md-10"> *@
+            @*         <textarea readonly rows="5" cols="5" class="form-control" *@
+            @*                   placeholder="Enter text here" asp-for="UserId"></textarea> *@
+            @*     </div> *@
+            @* </div> *@
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">EventID</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" asp-for="EventId">
+                </div>
+            </div>
+        
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Response</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" asp-for="Response">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="form-label col-md-2">Date</label>
+                <div class="col-md-10">
+                    <input type="date" readonly class="form-control" asp-for="RespondedOn">
+                </div>
+            </div>
+
+
+            @* <div class="mb-3 row"> *@
+            @* 	<label class="form-label col-md-2">File Input</label> *@
+            @* 	<div class="col-md-10"> *@
+            @* 		<input class="form-control" type="file"> *@
+            @* 	</div> *@
+            @* </div> *@
+
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a class="btn btn-danger" asp-controller="Event" asp-action="UserRsvp">Back</a>
+
+        </form>
+    </div>
+</div>

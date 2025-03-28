@@ -1,0 +1,36 @@
+﻿@model List<NotificationModel>
+
+@if (Model == null || !Model.Any())
+{
+	<p>No notifications found.</p>
+}
+else
+{
+
+	<div class="d-flex align-items-center justify-content-between border-bottom p-0 pb-3 mb-3">
+
+		<h4 class="notification-title">Notifications @Model.Count()</h4>
+		<!-- .Count(e => e.UserId.Equal(UserId))  -->
+	</div>
+
+	@foreach (var i in Model)
+	{
+		<div class="border-bottom mb-3 pb-3">
+			<a href="@Url.Action("PayBill", "Maintenance", new { id = i.Billlink })">
+				<div class="d-flex">
+					<span class="avatar avatar-lg me-2 flex-shrink-0">
+						<img src="/assets/img/profiles/avatar-27.jpg" alt="Profile">
+					</span>
+					<div class="flex-grow-1">
+						<p class="mb-1">
+							<span class="text-dark fw-semibold">@i.Title</span>
+						</p>
+						<span>Status: @(i.Status == 0 ? "Unread" : "Read")</span>
+					</div>
+				</div>
+			</a>
+		</div>
+	}
+}
+
+
