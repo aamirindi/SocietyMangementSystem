@@ -140,13 +140,13 @@ namespace SocietyMVC.Services
             var smtp = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new System.Net.NetworkCredential("aamirindi@gmail.com", "ilfiiuphnyfwgnzr"),
+                Credentials = new System.Net.NetworkCredential("", ""),
                 EnableSsl = true
             };
 
             var message = new MailMessage
             {
-                From = new MailAddress("aamirindi@gmail.com"),
+                From = new MailAddress(""),
                 Subject = subject,
                 Body = body,
                 IsBodyHtml = true
