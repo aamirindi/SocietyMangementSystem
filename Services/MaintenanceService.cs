@@ -353,7 +353,7 @@ namespace SocietyMVC.Services
                 var s = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
-                    Credentials = new NetworkCredential("yadav1052004@gmail.com", "xmzypcywsgdwghjv"),
+                    Credentials = new NetworkCredential("yadav1052004@gmail.com", ""),
                     EnableSsl = true
                 };
 
