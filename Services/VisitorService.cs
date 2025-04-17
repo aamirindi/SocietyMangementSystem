@@ -142,7 +142,7 @@ namespace SocietyMVC.Services
             var smtp = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new System.Net.NetworkCredential("aamirindi@gmail.com", "ilfiiuphnyfwgnzr"),
+                Credentials = new System.Net.NetworkCredential("aamirindi@gmail.com", ""),
                 EnableSsl = true
             };
 
