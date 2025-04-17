@@ -1,44 +1,77 @@
 ﻿<partial name="Notification"></partial>
 @model MaintenanceModel
 
-<form method="post">
+<div class="container"
+    style="max-width: 600px; margin: 2rem auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div class="card shadow-sm bill-card" style="border-radius: 12px; border: none;">
+        <div class="card-header bg-primary text-white" style="border-radius: 12px 12px 0 0; padding: 1.5rem;">
+            <h3 class="mb-0" style="font-weight: 600;">Add Maintenance Bill</h3>
+        </div>
 
+        <div class="card-body" style="padding: 2rem;">
+            <form method="post">
+                <div class="form-group mb-4">
+                    <label asp-for="BillName" class="form-label"
+                        style="font-weight: 500; color: #495057; margin-bottom: 0.5rem;"></label>
+                    <input type="text" class="form-control" asp-for="BillName" placeholder="Enter Bill Name" required
+                        style="border-radius: 8px; padding: 0.75rem; border: 1px solid #ced4da; transition: border-color 0.3s;">
+                </div>
 
-    <div class="form-group">
-        <label asp-for="BillName"></label>
-        <input type="text" class="form-control" asp-for="BillName" placeholder="Enter Bill Name" required > 
+                <div class="form-group mb-4">
+                    <label asp-for="Amount" class="form-label"
+                        style="font-weight: 500; color: #495057; margin-bottom: 0.5rem;"></label>
+                    <input type="number" class="form-control" asp-for="Amount" placeholder="Enter Amount" required
+                        style="border-radius: 8px; padding: 0.75rem; border: 1px solid #ced4da; transition: border-color 0.3s;">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="DueDate" class="form-label"
+                        style="font-weight: 500; color: #495057; margin-bottom: 0.5rem;"></label>
+                    <input type="date" class="form-control" asp-for="DueDate" required
+                        style="border-radius: 8px; padding: 0.75rem; border: 1px solid #ced4da; transition: border-color 0.3s;">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="form-label" style="font-weight: 500; color: #495057; margin-bottom: 0.5rem;">Flat
+                        Number</label>
+                    <select class="form-select" asp-for="UserId" required
+                        style="border-radius: 8px; padding: 0.75rem; border: 1px solid #ced4da; transition: border-color 0.3s; appearance: none;">
+                        <option value="">-- Select Flat No --</option>
+                        @foreach (var flat in (List<SelectListItem>)ViewBag.Flatnumber ?? new List<SelectListItem>())
+                        {
+                            <option value="@flat.Value">@flat.Text</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group mt-5">
+                    <button type="submit" class="btn btn-primary w-100 py-2" style="border-radius: 8px; font-weight: 600; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                                   border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s;">
+                        Submit Bill
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Amount"></label>
-        <input type="number" class="form-control" asp-for="Amount" placeholder="Enter Amount" required>
-    </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="DueDate"></label>
-        <input type="date" class="form-control" asp-for="DueDate" required>
-    </div>
-    <div class="form-group">
-        <label>FlatNumber</label>
+<style>
+    .bill-card {
+        h3 {
 
+            text-align: center;
+            color: white;
+        }
+    }
 
-        <select class="form-control" asp-for="UserId" required>
-            <option value="">--Select FlatNo--</option>
-            @foreach (var flat in (List<SelectListItem>)ViewBag.Flatnumber ?? new List<SelectListItem>())
-            {
-                <option value="@flat.Value">@flat.Text</option> <!-- UserId as Value, FlatNumber as Display -->
-            }
-        </select>
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 0.25rem rgba(118, 75, 162, 0.25);
+    }
 
-
-
-
-
-
-    </div>
-
-
-    <br />
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</form>
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+</style>

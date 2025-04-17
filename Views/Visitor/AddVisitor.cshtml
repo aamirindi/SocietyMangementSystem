@@ -260,7 +260,7 @@
                         <button type="button" class="btn w-100 shadow-sm fw-semibold"
                             style="background-color: #ff6b00; color: #fff; border: none; transition: 0.3s;"
                             onmouseover="this.style.backgroundColor='#e65c00'"
-                            onmouseout="this.style.backgroundColor='#ff6b00'" onclick="requestOTP(event)">
+                            onmouseout="this.style.backgroundColor='#ff6b00'" id="requestOtpBtn">
                             <i class="bi bi-shield-lock"></i> Request OTP
                         </button>
                     </div>
@@ -476,8 +476,8 @@
                                         <td class="text-center">
                                             <span
                                                 class="badge 
-                                                                                                                                                                @(visitor.Status == VisitorStatus.Approved ? "bg-success-light" :
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  visitor.Status == VisitorStatus.Rejected ? "bg-danger-light" : "bg-warning-light")">
+                                                                                                                                                                                                                                                                                                                                                                                                                @(visitor.Status == VisitorStatus.Approved ? "bg-success-light" :
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  visitor.Status == VisitorStatus.Rejected ? "bg-danger-light" : "bg-warning-light")">
                                         @visitor.Status
                                     </span>
                                 </td>
@@ -629,8 +629,8 @@
             });
 
             // Your existing OTP functions (unchanged)
-            let otpRequested = false; // Prevent multiple clicks
-
+            @* let otpRequested = false; // Prevent multiple clicks *@
+                @* 
             function requestOTP(event) {
                 event.preventDefault(); // Prevent form submission
 
@@ -690,30 +690,31 @@
                         alert('An error occurred: ' + error.message);
                         otpRequested = false; // Re-enable button on error
                     });
-            }
+            } *@
 
-            function startOTPTimer() {
-                let timeLeft = 120; // 2 minutes
-                const otpTimerElement = document.getElementById('otpTimer');
-                const resendLink = document.getElementById('resendOtpLink');
+                function startOTPTimer() {
+                    let timeLeft = 120; // 2 minutes
+                    const otpTimerElement = document.getElementById('otpTimer');
+                    const resendLink = document.getElementById('resendOtpLink');
 
-                resendLink.classList.add('d-none'); // Hide Resend OTP
+                    resendLink.classList.add('d-none'); // Hide Resend OTP
 
-                otpTimerElement.innerText = `OTP expires in ${timeLeft} seconds.`;
+                    otpTimerElement.innerText = `OTP expires in ${timeLeft} seconds.`;
 
-                const otpInterval = setInterval(() => {
-                    timeLeft--;
-                    if (timeLeft <= 0) {
-                        clearInterval(otpInterval);
-                        otpTimerElement.innerText = 'OTP expired.';
-                        resendLink.classList.remove('d-none');
-                        otpRequested = false; // Allow requesting OTP again after expiry
-                    } else {
-                        otpTimerElement.innerText = `OTP expires in ${timeLeft} seconds.`;
-                    }
-                }, 1000);
-            }
+                    const otpInterval = setInterval(() => {
+                        timeLeft--;
+                        if (timeLeft <= 0) {
+                            clearInterval(otpInterval);
+                            otpTimerElement.innerText = 'OTP expired.';
+                            resendLink.classList.remove('d-none');
+                            otpRequested = false; // Allow requesting OTP again after expiry
+                        } else {
+                            otpTimerElement.innerText = `OTP expires in ${timeLeft} seconds.`;
+                        }
+                    }, 1000);
+                }
 
+            // not implemented this..
             function resendOTP() {
                 const email = document.getElementById('visitorEmail').value;
 
@@ -744,5 +745,79 @@
                         alert('An error occurred while resending OTP.');
                     });
             }
+
+        });
+
+
+        $(document).ready(function () {
+            $('#requestOtpBtn').on('click', function (e) {
+                console.log("clicked");
+                requestOTP(e);
+            });
+
+            let otpRequested = false; // Prevent multiple clicks
+
+            function requestOTP(event) {
+                event.preventDefault(); // Prevent form submission
+
+                if (otpRequested) {
+                    console.log("OTP request already in progress.");
+                    return;
+                }
+
+                otpRequested = true; // Disable further clicks
+                console.log("Request OTP function called");
+
+                const form = document.getElementById('addVisitorForm');
+                const formData = new FormData(form);
+
+                // Log form data for debugging
+                console.log("Form action:", form.action);
+                for (let pair of formData.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
+                }
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        console.log("Response status:", response.status);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Response data:", data);
+                        if (data.success) {
+                            console.log("OTP requested successfully");
+
+                            // Store visitor email for verification
+                            document.getElementById('visitorEmail').value = formData.get('NewVisitor.Email');
+
+                            // Close Add Visitor Modal
+                            var addVisitorModal = bootstrap.Modal.getInstance(document.getElementById('addVisitorModal'));
+                            if (addVisitorModal) addVisitorModal.hide();
+
+                            // Show OTP Modal
+                            setTimeout(() => {
+                                var otpModal = new bootstrap.Modal(document.getElementById('verifyOtpModal'));
+                                otpModal.show();
+                                startOTPTimer();
+                            }, 500);
+                        } else {
+                            alert('Failed to request OTP: ' + (data.message || 'Unknown error'));
+                            otpRequested = false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error details:', error);
+                        alert('An error occurred: ' + error.message);
+                        otpRequested = false;
+                    });
+            }
+
+        });
     </script>
 }

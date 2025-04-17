@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/asifaindi/Downloads/SocietyMVC/SocietyMVC/SocietyMVC/SocietyMVC.csproj": {}
+    "/Volumes/Aamir/SocietyMangementSystem/SocietyMVC.csproj": {}
   },
   "projects": {
-    "/Users/asifaindi/Downloads/SocietyMVC/SocietyMVC/SocietyMVC/SocietyMVC.csproj": {
+    "/Volumes/Aamir/SocietyMangementSystem/SocietyMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/asifaindi/Downloads/SocietyMVC/SocietyMVC/SocietyMVC/SocietyMVC.csproj",
+        "projectUniqueName": "/Volumes/Aamir/SocietyMangementSystem/SocietyMVC.csproj",
         "projectName": "SocietyMVC",
-        "projectPath": "/Users/asifaindi/Downloads/SocietyMVC/SocietyMVC/SocietyMVC/SocietyMVC.csproj",
+        "projectPath": "/Volumes/Aamir/SocietyMangementSystem/SocietyMVC.csproj",
         "packagesPath": "/Users/asifaindi/.nuget/packages/",
-        "outputPath": "/Users/asifaindi/Downloads/SocietyMVC/SocietyMVC/SocietyMVC/obj/",
+        "outputPath": "/Volumes/Aamir/SocietyMangementSystem/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/asifaindi/.nuget/NuGet/NuGet.Config"

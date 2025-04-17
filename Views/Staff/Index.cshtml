@@ -3,52 +3,124 @@
     ViewBag.Title = "Staff Schedules";
 }
 
-<h2>Staff Schedules</h2>
+<div class="container-fluid py-4">
+    <div class="card shadow-lg" style="border-radius: 16px; border: none;">
+        <div class="card-header bg-gradient-primary text-white" style="border-radius: 16px 16px 0 0;">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0" style="font-weight: 600;">Staff Schedules</h2>
+                <a asp-action="Create" class="btn btn-success" style="border-radius: 8px; font-weight: 500;">
+                    <i class="fas fa-plus-circle mr-2"></i>Add New Schedule
+                </a>
+            </div>
+        </div>
 
-<form method="get" asp-action="Index">
-    <select name="userId" class="form-control">
-        <option value="">-- Select Staff --</option>
-        @foreach (var user in ViewBag.Users as SelectList)
-        {
-            <option value="@user.Value">@user.Text</option>
-        }
-    </select>
+        <div class="card-body">
+            <!-- Filter Form -->
+            <form method="get" asp-action="Index" class="mb-4">
+                <div class="row g-3">
+                    <div class="col-md-5">
+                        <select name="userId" class="form-select" style="border-radius: 8px; padding: 10px;">
+                            <option value="">-- Select Staff --</option>
+                            @foreach (var user in ViewBag.Users as SelectList)
+                            {
+                                <option value="@user.Value">@user.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <select name="day" class="form-select" style="border-radius: 8px; padding: 10px;">
+                            <option value="">-- Select Day --</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100" style="border-radius: 8px; padding: 10px;">
+                            <i class="fas fa-filter mr-2"></i>Filter
+                        </button>
+                    </div>
+                </div>
+            </form>
 
-    <select name="day" class="form-control">
-        <option value="">-- Select Day --</option>
-        <option value="Monday">Monday</option>
-        <option value="Tuesday">Tuesday</option>
-        <!-- Add other days -->
-    </select>
+            <!-- Schedule Table -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" style="border-radius: 12px; overflow: hidden;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="padding: 1rem; font-weight: 600;">Staff Name</th>
+                            <th style="padding: 1rem; font-weight: 600;">Day</th>
+                            <th style="padding: 1rem; font-weight: 600;">Shift</th>
+                            <th style="padding: 1rem; font-weight: 600;">Task</th>
+                            <th style="padding: 1rem; font-weight: 600; text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var s in Model)
+                        {
+                            <tr style="border-bottom: 1px solid #f0f0f0;">
+                                <td style="padding: 1rem;">@s.User.Name</td>
+                                <td style="padding: 1rem;">@s.DayOfWeek</td>
+                                <td style="padding: 1rem;">
+                                    <span class="badge bg-info text-dark"
+                                        style="font-size: 0.85rem; padding: 0.35rem 0.65rem;">
+                                        @s.ShiftStart - @s.ShiftEnd
+                                    </span>
+                                </td>
+                                <td style="padding: 1rem;">@s.Task</td>
+                                <td style="padding: 1rem; text-align: center;">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a asp-action="Edit" asp-route-id="@s.ScheduleId" class="btn btn-sm btn-warning"
+                                            style="border-radius: 6px; min-width: 80px;">
+                                            <i class="fas fa-edit mr-1"></i>Edit
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@s.ScheduleId" class="btn btn-sm btn-danger"
+                                            style="border-radius: 6px; min-width: 80px;">
+                                            <i class="fas fa-trash-alt mr-1"></i>Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <button type="submit" class="btn btn-primary">Filter</button>
-</form>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Staff Name</th>
-            <th>Day</th>
-            <th>Shift</th>
-            <th>Task</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var s in Model)
-        {
-            <tr>
-                <td>@s.User.Name</td>
-                <td>@s.DayOfWeek</td>
-                <td>@s.ShiftStart - @s.ShiftEnd</td>
-                <td>@s.Task</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@s.ScheduleId" class="btn btn-warning">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@s.ScheduleId" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    .card {
+        overflow: hidden;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
 
-<a asp-action="Create" class="btn btn-success">Add New Schedule</a>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.05);
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .form-select:focus,
+    .btn:focus {
+        box-shadow: 0 0 0 0.25rem rgba(118, 75, 162, 0.25);
+        border-color: #764ba2;
+    }
+
+    .badge {
+        font-weight: 500;
+    }
+</style>
+
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

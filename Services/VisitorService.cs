@@ -30,6 +30,8 @@ namespace SocietyMVC.Services
             visitor.UserId = user.UserId;
             visitor.Status = VisitorStatus.Pending;
 
+            Console.WriteLine(visitor.Email);
+
             db.Visitors.Add(visitor);
             await db.SaveChangesAsync();
 
@@ -37,7 +39,6 @@ namespace SocietyMVC.Services
 
             return visitor.VisitorId;
         }
-
         public async Task<string> GenerateAndSendOTP(int visitorId)
         {
             var visitor = await db.Visitors.FindAsync(visitorId);
@@ -49,10 +50,11 @@ namespace SocietyMVC.Services
             db.Visitors.Update(visitor);
             await db.SaveChangesAsync();
 
-            var resident = await db.Users.FindAsync(visitor.UserId);
-            if (resident == null) return null;
-
-            // Construct the email body with visitor details
+            var resident = await db.Users.FirstOrDefaultAsync(u => u.UserId == visitor.UserId);
+            if (resident == null || string.IsNullOrWhiteSpace(resident.Email))
+            {
+                throw new Exception("Resident email is missing or user not found.");
+            }
 
             string emailBody = $@"
     <h2 style='color: green;'>Visitor OTP</h2>
@@ -140,13 +142,13 @@ namespace SocietyMVC.Services
             var smtp = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new System.Net.NetworkCredential("", ""),
+                Credentials = new System.Net.NetworkCredential("aamirindi@gmail.com", "ilfiiuphnyfwgnzr"),
                 EnableSsl = true
             };
 
             var message = new MailMessage
             {
-                From = new MailAddress(""),
+                From = new MailAddress("aamirindi@gmail.com"),
                 Subject = subject,
                 Body = body,
                 IsBodyHtml = true
