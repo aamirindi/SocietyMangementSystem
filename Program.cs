@@ -49,8 +49,8 @@ namespace SocietyMVC
             .AddCookie()
             .AddGoogle(options =>
             {
-                options.ClientId = "440780078459-0rfvhc05q86rpohfqh1lnbhbu021rnho.apps.googleusercontent.com";
-                options.ClientSecret = "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";
+                options.ClientId = "";
+                options.ClientSecret = "";
             });
 
             // HttpContextAccessor
